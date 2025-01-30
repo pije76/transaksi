@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from datetime import datetime
 
 from backend.auth import *
+from backend.utils import *
 from backend.connection import *
 from backend.controllers.user import *
 from backend.models.user import *
@@ -57,14 +58,6 @@ def create_user(request: User):
         new_balance = balance_collection.find_one({"_id": balanceid})
         new_balance = new_balance["balance"]
         return ResponseModel(new_user, "User added successfully.")
-
-
-@router.get("/profile")
-def get_me(token: str=Depends(oauth2_scheme)):
-    user = get_current_user(token)
-    username = user["username"]
-    user = user_collection.find_one({'username': username}, {'_id': 0})
-    return user
 
 
 @router.get("/", summary="Get All Users")
@@ -144,7 +137,6 @@ def update_user_data(
 @router.delete("/{id}", summary="Delete User Data")
 def delete_user_data(id: str):
     user = user_collection.find_one({"_id": ObjectId(id)})
-    # user: Annotated[User, Depends(Authorization(allowed_roles=[UserRole(name='admin')]))]
     if user:
         user_collection.delete_one({"_id": ObjectId(id)})
         return ResponseModel("User with ID: {} removed".format(id), "User deleted successfully")

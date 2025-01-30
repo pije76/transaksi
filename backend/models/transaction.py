@@ -13,21 +13,9 @@ from backend.models.user import *
 from backend.auth import *
 
 
-class Choices(str, Enum):
-	deposit = "deposit"
-	withdraw = "withdraw"
-
-# class Method(Enum):
-class Method(str, Enum):
-	cash = 'cash'
-	bank = 'bank'
-	emoney = 'emoney'
-
-
 class BalanceBase(BaseModel):
 	balance_id: str = Field(..., alias='_id')
 	user_id : User
-	# balance: float = None
 	balance: float = 0.0
 
 	model_config = ConfigDict(
@@ -36,17 +24,9 @@ class BalanceBase(BaseModel):
 	)
 
 
-# class BalanceCreate(BalanceBase):
-# 	# currency: str = "USD"
-# 	# amount: Optional[str] = "0"
-# 	pass
-
-
 class DepositBase(BaseModel):
-	# deposit_id: str = Field(..., alias='_id')
 	amount: float
 	method: Literal['bank', 'emoney']
-	# status: Literal['pending', 'success', 'failed']
 
 	model_config = ConfigDict(
 		populate_by_name=True,
@@ -58,10 +38,8 @@ class DepositCreate(DepositBase):
 
 
 class WithdrawBase(BaseModel):
-	# withdraw_id: str = Field(..., alias='_id')
 	amount: float
 	method: Literal['bank', 'emoney']
-	# status: Literal['pending', 'success', 'failed']
 
 	model_config = ConfigDict(
 		populate_by_name=True,
@@ -74,15 +52,8 @@ class WithdrawCreate(WithdrawBase):
 
 class TransactionBase(BaseModel):
 	transaction_id: str = Field(..., alias='_id')
-	# user_id : User
 	user_id: str
-	# date_time: datetime
 	date_time: Optional[datetime] = None
-	# transaction_type: Literal['deposit', 'withdraw']
-	# amount: float
-	# method: Literal['bank', 'emoney']
-	# status: Literal['pending', 'success', 'failed']
-
 
 	model_config = ConfigDict(
 		populate_by_name=True,
