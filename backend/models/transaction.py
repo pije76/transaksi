@@ -28,10 +28,6 @@ class DepositBase(BaseModel):
 	amount: float
 	method: Literal['bank', 'emoney']
 
-	model_config = ConfigDict(
-		populate_by_name=True,
-		arbitrary_types_allowed=True,
-	)
 
 class DepositCreate(DepositBase):
 	pass
@@ -41,10 +37,6 @@ class WithdrawBase(BaseModel):
 	amount: float
 	method: Literal['bank', 'emoney']
 
-	model_config = ConfigDict(
-		populate_by_name=True,
-		arbitrary_types_allowed=True,
-	)
 
 class WithdrawCreate(WithdrawBase):
 	pass
