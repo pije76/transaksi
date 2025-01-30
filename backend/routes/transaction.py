@@ -8,7 +8,6 @@ from bson import ObjectId
 from backend.auth import *
 from backend.utils import *
 from backend.connection import *
-from backend.controllers.transaction import *
 from backend.models.transaction import *
 
 router = APIRouter()

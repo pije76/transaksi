@@ -8,7 +8,6 @@ from datetime import datetime
 from backend.auth import *
 from backend.utils import *
 from backend.connection import *
-from backend.controllers.user import *
 from backend.models.user import *
 from backend.models.transaction import *
 
