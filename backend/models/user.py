@@ -17,14 +17,3 @@ class UpdateUser(User):
     payment_number: Optional[int] = None
     photo: Optional[str] = None
 
-
-def ResponseModel(data, message):
-    return {
-        "data": [data],
-        "code": 200,
-        "message": message,
-    }
-
-
-def ErrorResponseModel(error, code, message):
-    return {"error": error, "code": code, "message": message}

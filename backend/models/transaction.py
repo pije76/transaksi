@@ -69,14 +69,3 @@ class TransactionUpdate(TransactionBase):
 	method: Literal['bank', 'emoney']
 	status: Literal['pending', 'success', 'failed']
 
-
-
-def ResponseModel(data, message):
-	return {
-		"data": [data],
-		"code": 200,
-		"message": message,
-	}
-
-def ErrorResponseModel(error, code, message):
-	return {"error": error, "code": code, "message": message}

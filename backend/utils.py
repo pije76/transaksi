@@ -27,3 +27,14 @@ def serializeDict(entity) -> dict:
     if entity!=None:
         return {**{i:str(entity[i]) for i in entity if i=='_id'}, **{i:entity[i] for i in entity if i!='_id'}}
     return None
+
+
+def ResponseModel(data, message):
+    return {
+        "data": [data],
+        "code": 200,
+        "message": message,
+    }
+
+def ErrorResponseModel(error, code, message):
+    return {"error": error, "code": code, "message": message}
